@@ -8,6 +8,14 @@
             "email": "tur.4000@gmail.com"
         }
     ],
+    "autoload": {
+      "psr-4": {
+
+      },
+      "files": [
+        "src/cli.php"
+      ]
+    },
     "require": {
         "docopt/docopt": "^1.0"
     },
@@ -15,6 +23,9 @@
         "squizlabs/php_codesniffer": "^3.5",
         "phpunit/phpunit": "^9.5"
     },
+    "bin": [
+        "bin/gendiff"
+    ],
     "scripts": {
         "phpcs": "phpcs",
         "test": "phpunit"
