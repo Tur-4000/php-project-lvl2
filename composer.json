@@ -13,7 +13,8 @@
 
       },
       "files": [
-        "src/help.php"
+        "src/help.php",
+        "src/genDiff.php"
       ]
     },
     "require": {

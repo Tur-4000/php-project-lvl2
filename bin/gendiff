@@ -5,6 +5,8 @@
 use const Differ\Help\VERSION;
 use const Differ\Help\DOC;
 
+use function Differ\GenDiff\genDiff;
+
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
 $autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
 if (file_exists($autoloadPath1)) {
@@ -13,7 +15,10 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-$args = Docopt::handle(DOC, ['version' => VERSION]);
-\print_r($args);
+$params = Docopt::handle(DOC, ['version' => VERSION]);
 
+$firstFile = $params->args['FIRST_FILE'];
+$secondFile = $params->args['SECOND_FILE'];
+$format = $params->args['--format'];
 
+genDiff($firstFile, $secondFile, $format);
