@@ -21,4 +21,5 @@ $firstFile = $params->args['FIRST_FILE'];
 $secondFile = $params->args['SECOND_FILE'];
 $format = $params->args['--format'];
 
-genDiff($firstFile, $secondFile, $format);
+echo genDiff($firstFile, $secondFile, $format);
+echo PHP_EOL;
