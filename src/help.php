@@ -1,14 +1,15 @@
 <?php
 
-namespace Differ\Cli;
+namespace Differ\Help;
 
+const VERSION = "0.0.0";
 const DOC = <<<DOC
 Generate diff
 
 Usage:
   gendiff (-h|--help)
   gendiff (-v|--version)
-  gendiff [--format <fmt>] <firstFile> <secondFile>
+  gendiff [--format <fmt>] FIRST_FILE SECOND_FILE
 
 Options:
   -h --help                     Show this screen
