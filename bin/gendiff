@@ -2,7 +2,8 @@
 
 <?php
 
-use const Differ\Cli\DOC;
+use const Differ\Help\VERSION;
+use const Differ\Help\DOC;
 
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
 $autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
@@ -12,6 +13,7 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-$args = Docopt::handle(DOC, array('version'=>'GenDiff 0.0.0'));
-foreach ($args as $k=>$v)
-    echo $k.': '.json_encode($v).PHP_EOL;
+$args = Docopt::handle(DOC, ['version' => VERSION]);
+\print_r($args);
+
+
