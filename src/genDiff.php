@@ -61,17 +61,27 @@ function render($ast)
     foreach ($ast as $key => $value) {
         switch ($value['status']) {
             case 'unchanged':
-                $result .= "    {$key}: {$value['value']}" . PHP_EOL;
+                $result .= "    {$key}: " .
+                    (is_bool($value['value']) ? boolToString($value['value']) : $value['value']) .
+                    PHP_EOL;
                 break;
             case 'modified':
-                $result .= "  - {$key}: {$value['valueBefore']}" . PHP_EOL;
-                $result .= "  + {$key}: {$value['valueAfter']}" . PHP_EOL;
+                $result .= "  - {$key}: " .
+                    (is_bool($value['valueBefore']) ? boolToString($value['valueBefore']) : $value['valueBefore']) .
+                    PHP_EOL;
+                $result .= "  + {$key}: " .
+                    (is_bool($value['valueAfter']) ? boolToString($value['valueAfter']) : $value['valueAfter']) .
+                    PHP_EOL;
                 break;
             case 'added':
-                $result .= "  + {$key}: {$value['value']}" . PHP_EOL;
+                $result .= "  + {$key}: " .
+                    (is_bool($value['value']) ? boolToString($value['value']) : $value['value']) .
+                    PHP_EOL;
                 break;
             case 'deleted':
-                $result .= "  - {$key}: {$value['value']}" . PHP_EOL;
+                $result .= "  - {$key}: " .
+                    (is_bool($value['value']) ? boolToString($value['value']) : $value['value']) .
+                    PHP_EOL;
                 break;
         }
     }
