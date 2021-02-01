@@ -15,3 +15,11 @@ $ make install
 ```sh
 $ make test
 ```
+
+## Usage
+
+```sh
+gendiff [--format <fmt>] FIRST_FILE SECOND_FILE
+```
+
+[![asciicast](https://asciinema.org/a/388341.svg)](https://asciinema.org/a/388341)
