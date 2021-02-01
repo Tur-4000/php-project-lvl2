@@ -2,7 +2,7 @@
 
 namespace Differ\GenDiff;
 
-function genDiff(string $file1, string $file2, string $format = 'stylish')
+function genDiff(string $file1, string $file2, string $format = 'stylish'): string
 {
     $firstFile = file_get_contents($file1);
     $secondFile = file_get_contents($file2);
@@ -55,33 +55,32 @@ function buildAst($data1, $data2)
     return $ast;
 }
 
-function render($ast)
+function render(array $ast): string
 {
     $result = '{' . PHP_EOL;
     foreach ($ast as $key => $value) {
         switch ($value['status']) {
             case 'unchanged':
-                $result .= "    {$key}: " .
-                    (is_bool($value['value']) ? boolToString($value['value']) : $value['value']) .
-                    PHP_EOL;
+                $val = is_bool($value['value']) ? boolToString($value['value']) : $value['value'];
+                $result .= "    {$key}: {$val}" . PHP_EOL;
                 break;
             case 'modified':
-                $result .= "  - {$key}: " .
-                    (is_bool($value['valueBefore']) ? boolToString($value['valueBefore']) : $value['valueBefore']) .
-                    PHP_EOL;
-                $result .= "  + {$key}: " .
-                    (is_bool($value['valueAfter']) ? boolToString($value['valueAfter']) : $value['valueAfter']) .
-                    PHP_EOL;
+                $valBefore = is_bool($value['valueBefore']) ?
+                    boolToString($value['valueBefore']) :
+                    $value['valueBefore'];
+                $valAfter = is_bool($value['valueAfter']) ?
+                    boolToString($value['valueAfter']) :
+                    $value['valueAfter'];
+                $result .= "  - {$key}: {$valBefore}" . PHP_EOL;
+                $result .= "  + {$key}: {$valAfter}" . PHP_EOL;
                 break;
             case 'added':
-                $result .= "  + {$key}: " .
-                    (is_bool($value['value']) ? boolToString($value['value']) : $value['value']) .
-                    PHP_EOL;
+                $val = is_bool($value['value']) ? boolToString($value['value']) : $value['value'];
+                $result .= "  + {$key}: {$val}" . PHP_EOL;
                 break;
             case 'deleted':
-                $result .= "  - {$key}: " .
-                    (is_bool($value['value']) ? boolToString($value['value']) : $value['value']) .
-                    PHP_EOL;
+                $val = is_bool($value['value']) ? boolToString($value['value']) : $value['value'];
+                $result .= "  - {$key}: {$val}" . PHP_EOL;
                 break;
         }
     }
