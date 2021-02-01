@@ -12,7 +12,7 @@ function genDiff(string $file1, string $file2, string $format = 'stylish')
 
     $ast = buildAst($data1, $data2);
 
-    $diff = buildDiff($ast);
+    $diff = render($ast);
 
     return $diff;
 }
@@ -42,7 +42,7 @@ function buildAst($data1, $data2)
     return $ast;
 }
 
-function buildDiff($ast)
+function render($ast)
 {
     $result = '{' . PHP_EOL;
     foreach ($ast as $key => $value) {
@@ -66,4 +66,15 @@ function buildDiff($ast)
     $result .= '}';
 
     return $result;
+}
+
+function boolToString(bool $value): string
+{
+    if ($value === true) {
+        return 'true';
+    }
+
+    if ($value === false) {
+        return 'false';
+    }
 }
