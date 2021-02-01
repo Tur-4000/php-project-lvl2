@@ -23,17 +23,30 @@ function buildAst($data1, $data2)
 
     foreach ($data1 as $key => $value) {
         if (!array_key_exists($key, $data2)) {
-            $ast[$key] = ['deleted', [$value]];
+            $ast[$key] = [
+                'status' => 'deleted',
+                'value' => $value
+            ];
         } elseif ($value === $data2[$key]) {
-            $ast[$key] = ['unchanged', [$value]];
+            $ast[$key] = [
+                'status' => 'unchanged',
+                'value' => $value
+            ];
         } elseif ($value !== $data2[$key]) {
-            $ast[$key] = ['modified', [$value, $data2[$key]]];
+            $ast[$key] = [
+                'status' => 'modified',
+                'valueBefore' => $value,
+                'valueAfter' => $data2[$key]
+            ];
         }
     }
 
     foreach ($data2 as $key => $value) {
         if (!array_key_exists($key, $data1)) {
-            $ast[$key] = ['added', [$value]];
+            $ast[$key] = [
+                'status' => 'added',
+                'value' => $value
+            ];
         }
     }
 
@@ -46,19 +59,19 @@ function render($ast)
 {
     $result = '{' . PHP_EOL;
     foreach ($ast as $key => $value) {
-        switch ($value[0]) {
+        switch ($value['status']) {
             case 'unchanged':
-                $result .= "    {$key}: {$value[1][0]}" . PHP_EOL;
+                $result .= "    {$key}: {$value['value']}" . PHP_EOL;
                 break;
             case 'modified':
-                $result .= "  - {$key}: {$value[1][0]}" . PHP_EOL;
-                $result .= "  + {$key}: {$value[1][1]}" . PHP_EOL;
+                $result .= "  - {$key}: {$value['valueBefore']}" . PHP_EOL;
+                $result .= "  + {$key}: {$value['valueAfter']}" . PHP_EOL;
                 break;
             case 'added':
-                $result .= "  + {$key}: {$value[1][0]}" . PHP_EOL;
+                $result .= "  + {$key}: {$value['value']}" . PHP_EOL;
                 break;
             case 'deleted':
-                $result .= "  - {$key}: {$value[1][0]}" . PHP_EOL;
+                $result .= "  - {$key}: {$value['value']}" . PHP_EOL;
                 break;
         }
     }
