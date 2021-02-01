@@ -2,8 +2,9 @@
 
 namespace Differ\Tests;
 
-use function Differ\GenDiff\boolToString;
 use PHPUnit\Framework\TestCase;
+
+use function Differ\GenDiff\boolToString;
 
 class BoolToStringTest extends TestCase
 {
