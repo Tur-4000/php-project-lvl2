@@ -2,13 +2,12 @@
 
 namespace Differ\GenDiff;
 
+use function Differ\Parsers\parser;
+
 function genDiff(string $file1, string $file2, string $format = 'stylish'): string
 {
-    $firstFile = file_get_contents($file1);
-    $secondFile = file_get_contents($file2);
-
-    $data1 = json_decode($firstFile, true);
-    $data2 = json_decode($secondFile, true);
+    $data1 = parser($file1);
+    $data2 = parser($file2);
 
     $ast = buildAst($data1, $data2);
 
