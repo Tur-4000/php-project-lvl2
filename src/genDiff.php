@@ -16,6 +16,7 @@ function genDiff(string $file1, string $file2, string $format = 'stylish'): stri
     return $diff;
 }
 
+
 function buildAst($data1, $data2)
 {
     $mergedData = array_merge($data1, $data2);
@@ -49,6 +50,26 @@ function buildAst($data1, $data2)
     ksort($ast);
 
     return $ast;
+}
+
+
+/*
+function buildAst($data1, $data2)
+{
+    $mergedData = mergeObject($data1, $data2);
+
+    foreach ($mergedData as $key => $value) {
+
+    }
+}
+*/
+function mergeObject(stdClass $data1, stdClass $data2): stdClass
+{
+    foreach ($data2 as $key => $value) {
+        $data1->$key = $value;
+    }
+
+    return $data1;
 }
 
 function render(array $ast): string
