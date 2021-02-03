@@ -1,9 +1,9 @@
 <?php
 
-namespace Differ\Parsers;
+namespace Tur4000\Differ\Parsers;
 
-use function Differ\Parsers\jsonParse;
-use function Differ\Parsers\yamlParse;
+use function Tur4000\Differ\Parsers\jsonParse;
+use function Tur4000\Differ\Parsers\yamlParse;
 
 function parser(string $pathToFile)
 {

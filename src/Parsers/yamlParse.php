@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\Parsers;
+namespace Tur4000\Differ\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
