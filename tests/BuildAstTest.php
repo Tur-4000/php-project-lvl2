@@ -33,17 +33,16 @@ class BuildAstTest extends TestCase
                 'value' => true,
             ],
         ];
-        $data1 = [
-            'host' => 'hexlet.io',
-            'timeout' => 50,
-            'proxy' => '123.234.53.22',
-            'follow' => false,
-        ];
-        $data2 = [
-            'timeout' => 20,
-            'verbose' => true,
-            'host' => 'hexlet.io',
-        ];
+        $data1 = new \stdClass();
+        $data1->host = 'hexlet.io';
+        $data1->timeout = 50;
+        $data1->proxy = '123.234.53.22';
+        $data1->follow = false;
+
+        $data2 = new \stdClass();
+        $data2->timeout = 20;
+        $data2->verbose = true;
+        $data2->host = 'hexlet.io';
 
         $this->assertEquals($expected, buildAst($data1, $data2));
     }
