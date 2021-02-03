@@ -2,22 +2,13 @@
 
 namespace Tur4000\Differ\Parsers;
 
-use function Tur4000\Differ\Parsers\jsonParse;
-use function Tur4000\Differ\Parsers\yamlParse;
+use function Tur4000\Differ\Parsers\parserFabric;
+use function Tur4000\Differ\Parsers\buildAst;
 
-function parser(string $pathToFile)
+function parser(string $pathToFile1, string $pathToFile2)
 {
-    $fileType = strtolower(substr($pathToFile, strrpos($pathToFile, '.')));
+    $data1 = parserFabric($pathToFile1);
+    $data2 = parserFabric($pathToFile2);
 
-    $data = file_get_contents($pathToFile);
-
-    if ($fileType === '.json') {
-        $result = jsonParse($data);
-    } elseif ($fileType === '.yaml') {
-        $result = yamlParse($data);
-    } else {
-        die("Udefined file format: {$fileType}\n");
-    }
-
-    return $result;
+    return buildAst($data1, $data2);
 }

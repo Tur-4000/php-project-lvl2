@@ -4,7 +4,7 @@ namespace Tur4000\Differ\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function Tur4000\Differ\GenDiff\buildAst;
+use function Tur4000\Differ\Parsers\buildAst;
 
 class BuildAstTest extends TestCase
 {
