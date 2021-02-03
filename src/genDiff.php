@@ -18,33 +18,30 @@ function genDiff(string $file1, string $file2, string $format = 'stylish'): stri
 
 function buildAst($data1, $data2)
 {
+    $mergedData = array_merge($data1, $data2);
     $ast = [];
 
-    foreach ($data1 as $key => $value) {
-        if (!array_key_exists($key, $data2)) {
-            $ast[$key] = [
-                'status' => 'deleted',
-                'value' => $value
-            ];
-        } elseif ($value === $data2[$key]) {
-            $ast[$key] = [
-                'status' => 'unchanged',
-                'value' => $value
-            ];
-        } elseif ($value !== $data2[$key]) {
-            $ast[$key] = [
-                'status' => 'modified',
-                'valueBefore' => $value,
-                'valueAfter' => $data2[$key]
-            ];
-        }
-    }
-
-    foreach ($data2 as $key => $value) {
+    foreach ($mergedData as $key => $value) {
         if (!array_key_exists($key, $data1)) {
             $ast[$key] = [
                 'status' => 'added',
                 'value' => $value
+            ];
+        } elseif (!array_key_exists($key, $data2)) {
+            $ast[$key] = [
+                'status' => 'deleted',
+                'value' => $value
+            ];
+        } elseif ($value === $data1[$key]) {
+            $ast[$key] = [
+                'status' => 'unchanged',
+                'value' => $value
+            ];
+        } elseif ($value !== $data1[$key]) {
+            $ast[$key] = [
+                'status' => 'modified',
+                'valueBefore' => $data1[$key],
+                'valueAfter' => $value,
             ];
         }
     }
