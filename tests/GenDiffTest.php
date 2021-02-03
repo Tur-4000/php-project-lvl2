@@ -1,29 +1,25 @@
 <?php
 
-namespace Differ\Tests;
+namespace Tur4000\Differ\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function Differ\GenDiff\genDiff;
+use function Tur4000\Differ\GenDiff\genDiff;
 
 class GenDiffTest extends TestCase
 {
     public function testGenDiff()
     {
+        $plainExpected = file_get_contents('./tests/fixtures/plainExpected.txt');
+
         $pathToFile1 = './tests/fixtures/file01.json';
         $pathToFile2 = './tests/fixtures/file02.json';
 
-        $expected = <<<RENDER
-{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}
-RENDER;
+        $this->assertEquals($plainExpected, genDiff($pathToFile1, $pathToFile2));
 
-        $this->assertEquals($expected, genDiff($pathToFile1, $pathToFile2));
+        $pathToFile3 = './tests/fixtures/file01.yaml';
+        $pathToFile4 = './tests/fixtures/file02.yaml';
+
+        $this->assertEquals($plainExpected, genDiff($pathToFile3, $pathToFile4));
     }
 }

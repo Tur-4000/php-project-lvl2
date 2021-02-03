@@ -2,10 +2,10 @@
 
 <?php
 
-use const Differ\Help\VERSION;
-use const Differ\Help\DOC;
+use const Tur4000\Differ\Help\VERSION;
+use const Tur4000\Differ\Help\DOC;
 
-use function Differ\GenDiff\genDiff;
+use function Tur4000\Differ\GenDiff\genDiff;
 
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
 $autoloadPath2 = __DIR__ . '/../vendor/autoload.php';

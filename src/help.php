@@ -1,6 +1,6 @@
 <?php
 
-namespace Differ\Help;
+namespace Tur4000\Differ\Help;
 
 const VERSION = "0.0.0";
 const DOC = <<<DOC
