@@ -4,7 +4,7 @@ namespace Tur4000\Differ\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function Tur4000\Differ\GenDiff\render;
+use function Tur4000\Differ\Renderer\render;
 
 class RenderTest extends TestCase
 {
@@ -34,17 +34,8 @@ class RenderTest extends TestCase
             ],
         ];
 
-        $expected = <<<RENDER
-{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}
-RENDER;
+        $plainExpected = file_get_contents('./tests/fixtures/plainExpected.txt');
 
-        $this->assertEquals($expected, render($ast));
+        $this->assertEquals($plainExpected, render($ast));
     }
 }

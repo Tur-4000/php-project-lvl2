@@ -19,7 +19,8 @@
         "src/Parsers/parserFabric.php",
         "src/Parsers/jsonParse.php",
         "src/Parsers/yamlParse.php",
-        "src/Parsers/buildAst.php"
+        "src/Parsers/buildAst.php",
+        "src/Renderers/renderer.php"
       ]
     },
     "require": {

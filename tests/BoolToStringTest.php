@@ -4,7 +4,7 @@ namespace Tur4000\Differ\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-use function Tur4000\Differ\GenDiff\boolToString;
+use function Tur4000\Differ\Renderer\boolToString;
 
 class BoolToStringTest extends TestCase
 {
